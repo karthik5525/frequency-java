@@ -1,0 +1,281 @@
+1.
+
+#include<stdio.h>
+
+void main()
+
+{
+
+int nb,b[30],np,p[30],allocation[30];
+
+int i,j;
+
+printf("\n\t*** First Fit ***");
+
+printf("\nEnter the number of blocks: ");
+
+scanf("%d",&nb);
+
+printf("\nEnter the size of the blocks:\n");
+
+for(i=0;i<nb;i++)
+
+{
+
+scanf("%d",&b[i]);
+
+}
+
+printf("\nEnter the number of Process: ");
+
+scanf("%d",&np);
+
+printf("\nEnter the Process request :\n");
+
+for(i=0;i<np;i++)
+
+{
+
+scanf("%d",&p[i]);
+
+allocation[i]=-1;
+
+}
+
+for (i =0; i <np; i++)
+
+{
+
+for (j = 0; j < nb; j++)
+
+ {
+
+ if (b[j] >= p[i])
+
+ {
+
+ allocation[i] = j;
+
+ b[j] = b[j] - p[i];
+
+ break;
+
+ }
+
+ }
+
+}
+
+printf("\nProcess No.\tProcess Size\tBlock no.");
+
+for (i = 0; i < np; i++)
+
+{
+
+printf("\n\t%d\t\t%d\t",i+1,p[i]);
+
+if(allocation[i]==-1)
+
+printf("Not Allocated");
+
+else
+
+printf("%d",allocation[i]+1);
+
+}
+
+}
+
+
+2.
+
+#include<stdio.h> 
+
+void main() 
+
+{ 
+
+Int i,j,nb,np,b[30],p[30],allocat[30],diff,bsel,lowest; 
+
+printf("\n\t*** Best Fit ***"); 
+
+printf("\nEnter the number of blocks: "); 
+
+scanf("%d",&nb); 
+
+printf("\nEnter the size of the blocks:\n");
+
+for(i=0;i<nb;i++) 
+
+{ scanf("%d",&b[i]); 
+
+} 
+
+printf("\nEnter the number of Process: "); 
+
+scanf("%d",&np); 
+
+printf("\nEnter the Process request :\n"); 
+
+for(i=0;i<np;i++) 
+
+{ scanf("%d",&p[i]); 
+
+ allocat[i]=-1; 
+
+} 
+
+for(i=0;i<np;i++) 
+
+{ bsel=0; 
+
+ lowest=1000; 
+
+ for(j=0;j<nb;j++) 
+
+ { 
+
+ diff=b[j]-p[i]; 
+
+ if(diff >=0) 
+
+ { if(lowest>diff) 
+
+ { 
+
+ lowest=diff; 
+
+ bsel=j; 
+
+ } 
+
+ } 
+
+ } 
+
+ if(bsel!=0) 
+
+{ allocat[i] = bsel; 
+
+ b[bsel] = b[bsel] - p[i]; 
+
+} 
+
+} 
+
+printf("\nProcess No.\tProcess Size\tBlock no."); 
+
+for (i = 0; i < np; i++) 
+
+{ 
+
+printf("\n\t%d\t\t%d\t",i+1,p[i]); 
+
+if(allocat[i]==-1) 
+
+printf("Not Allocated"); 
+
+else 
+
+printf("%d",allocat[i]+1); 
+
+} 
+
+}
+
+
+3.
+
+#include<stdio.h> 
+
+void main() 
+
+{ 
+
+int i,j,nb,np,b[30],p[30],allocat[30],diff,bsel,highest; 
+
+printf("\n\t*** Worst Fit ***"); 
+
+printf("\nEnter the number of blocks: "); 
+
+scanf("%d",&nb); 
+
+printf("\nEnter the size of the blocks:\n"); 
+
+for(i=0;i<nb;i++) 
+
+{ scanf("%d",&b[i]); 
+
+} 
+
+printf("\nEnter the number of Process: "); 
+
+scanf("%d",&np); 
+
+printf("\nEnter the Process request :\n"); 
+
+for(i=0;i<np;i++) 
+
+{ scanf("%d",&p[i]); 
+
+ allocat[i]=-1; 
+
+} 
+
+for(i=0;i<np;i++) 
+
+{ bsel=0; 
+
+ highest=0; 
+
+for(j=0;j<nb;j++) 
+
+{ diff=b[j]-p[i]; 
+
+ if(diff >=0) 
+
+ { 
+
+ if(highest<diff) 
+
+ { 
+
+ highest=diff; 
+
+ bsel=j; 
+
+ } 
+
+ } 
+
+} 
+
+if(bsel!=0) 
+
+{ allocat[i] = bsel; 
+
+ b[bsel] = b[bsel] - p[i]; 
+
+} 
+
+} 
+
+printf("\nProcess No.\tProcess Size\tBlock no."); 
+
+for (i = 0; i < np; i++) 
+
+{ 
+
+printf("\n\t%d\t\t%d\t",i+1,p[i]); 
+
+if(allocat[i]==-1) 
+
+printf("Not Allocated"); 
+
+else 
+
+printf("%d",allocat[i]+1); 
+
+} 
+
+}
